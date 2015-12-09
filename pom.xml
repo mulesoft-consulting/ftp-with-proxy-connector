@@ -25,11 +25,11 @@
 		<dependency>
 			<groupId>it.sauronsoftware</groupId>
 			<artifactId>ftp4j</artifactId>
-			<version>1.6</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/src/main/resources/lib/ftp4j-1.7.2.jar</systemPath>
+			<version>1.7.2</version>
 		</dependency>
 	</dependencies>
+	
+	
 
 	<repositories>
 		<repository>
@@ -41,7 +41,7 @@
 		<repository>
 			<id>typesafe-releases</id>
 			<name>Type Safe Releases Repository</name>
-			<url>http://repo.typesafe.com/typesafe/releases/</url>
+			<url>http://54.165.100.83:8081/artifactory/ext-release-local/</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>

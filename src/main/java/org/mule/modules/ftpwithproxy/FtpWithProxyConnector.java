@@ -12,6 +12,7 @@ import org.mule.api.annotations.Config;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Processor;
 import org.mule.modules.ftpwithproxy.config.ConnectorConfig;
+import org.mule.util.UUID;
 
 @Connector(name="ftp-with-proxy", friendlyName="Ftp With Proxy")
 public class FtpWithProxyConnector {
@@ -31,7 +32,7 @@ public class FtpWithProxyConnector {
      */
     @Processor
     public FileInputStream getFile(String path, String fileName) throws Exception {
-    	File tempFile = new File(this.getTempDirectory());
+    	File tempFile = new File(this.getTempFile());
 
     	FTPClient client = this.config.getClient();
     	client.changeDirectory(path);
@@ -84,11 +85,12 @@ public class FtpWithProxyConnector {
         this.config = config;
     }
 
-    protected String getTempDirectory() {
+    protected String getTempFile() {
+    	String file = UUID.getUUID();
     	if (isWindows()) {
-    		return "C:\\temp";
+    		return "C:\\temp\\" + file;
     	} else {
-    		return "/tmp";
+    		return "/tmp/" + file;
     	}
     }
     

@@ -16,6 +16,7 @@ import org.mule.api.annotations.Disconnect;
 import org.mule.api.annotations.TestConnectivity;
 import org.mule.api.annotations.ValidateConnection;
 import org.mule.api.annotations.components.ConnectionManagement;
+import org.mule.api.annotations.display.FriendlyName;
 import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.display.Placement;
 import org.mule.api.annotations.param.ConnectionKey;
@@ -45,12 +46,14 @@ public class ConnectorConfig {
 
 
     @Configurable
-    @Placement(order=0, group="FTP Configuration")
+    @Placement(order=0, group="Connection")
+    @FriendlyName(value="FTP Host")
     private String ftpHost;
     
     @Configurable 
     @Default(value="21")
-    @Placement(order=1, group="FTP Configuration")
+    @Placement(order=1, group="Connection")
+    @FriendlyName(value="FTP Port")
     private Integer ftpPort;
 
     private String ftpUsername;
@@ -67,7 +70,7 @@ public class ConnectorConfig {
      */
     @Connect
     @TestConnectivity
-    public void connect(@ConnectionKey String username, @Password String password) throws ConnectionException {
+    public void connect(@ConnectionKey @FriendlyName(value="FTP Username") String username, @Password @FriendlyName(value="FTP Password") String password) throws ConnectionException {
     	this.ftpUsername = username;
     	this.ftpPassword = password;
     	try {
@@ -94,7 +97,7 @@ public class ConnectorConfig {
      */
     @ValidateConnection
     public boolean isConnected() {
-    	return this.client.isConnected();
+    	return (this.client != null && this.client.isConnected());
     }
 
     /**
