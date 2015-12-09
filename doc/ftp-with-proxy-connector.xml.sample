@@ -1,0 +1,3 @@
+<!-- BEGIN_INCLUDE(ftp-with-proxy:getFile) -->
+    <ftp-with-proxy:getFile config-ref="" path="#[map-payload:path]" fileName="#[map-payload:fileName]" />
+<!-- END_INCLUDE(ftp-with-proxy:getFile) -->
